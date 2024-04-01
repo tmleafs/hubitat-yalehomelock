@@ -28,7 +28,7 @@ import groovy.transform.Field
 @Field static String global_HeaderAcceptVersion = "0.0.1"
 
 definition(
-        name: "August Home",
+        name: "Yale Home",
         namespace: "tmleafs",
         author: "Steven Dale (TMLeafs) Credit Taylor Brown (@thecloudtaylor)",
         description: "Yale Home App and Driver",
