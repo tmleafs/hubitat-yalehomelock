@@ -1,5 +1,5 @@
 /*
-Hubitat Driver For August Door Lock
+Hubitat Driver For Yale Home Door Lock with Doorsense
 Copyright 2020 - Taylor Brown
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -10,14 +10,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 11-25-2020 :  Initial 
 11-28-2020 :  0.0.1 Alpha
-12-4-2020:    Refactor drivers
+12-04-2020 :  Refactor drivers
+04-01-2024 :  Yale Home Rebrand
 */
 
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
 metadata {
-    definition (name: "August Lock with DoorSense", namespace: "thecloudtaylor", author: "Taylor Brown") {
+    definition (name: "Yale Home Lock with DoorSense", namespace: "tmleafs", author: "Taylor Brown") {
         capability "Lock"
         capability "Refresh"
         capability "ContactSensor"
