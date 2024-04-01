@@ -946,7 +946,7 @@ def deleteDevices()
     } 
 }
 
-def discoverDevices(
+def discoverDevices()
 {
     LogDebug("discoverDevices()");
 
