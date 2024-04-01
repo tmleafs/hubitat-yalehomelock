@@ -29,9 +29,9 @@ import groovy.transform.Field
 
 definition(
         name: "August Home",
-        namespace: "thecloudtaylor",
-        author: "Taylor Brown (@thecloudtaylor)",
-        description: "August Home App and Driver",
+        namespace: "tmleafs",
+        author: "Steven Dale (TMLeafs) Credit Taylor Brown (@thecloudtaylor)",
+        description: "Yale Home App and Driver",
         category: "DoorLock",
         iconUrl: "",
         iconX2Url: "")
@@ -54,7 +54,7 @@ mappings {
 }
 
 def mainPage() {
-    dynamicPage(name: "mainPage", title: "Setup connection to August Home and Discover devices", install: true, uninstall: true) {
+    dynamicPage(name: "mainPage", title: "Setup connection to Yale Home and Discover devices", install: true, uninstall: true) {
 
         getLoginLink()
         
@@ -74,7 +74,7 @@ def loginPage()
 {
     dynamicPage(name:"loginPage", title: "Login Options", install: false, uninstall: false) {
     section {
-        paragraph "August Login Options"
+        paragraph "Yale Home Login Options"
     }
     getLoginOptions()
     getTwoFA()
@@ -110,8 +110,8 @@ def getLoginOptions()
  section 
     {
         input name: "loginMethod", type: "enum", title: "Authentication Method", options: ["email", "phone"], required: true, defaultValue: "phone", submitOnChange: true
-        input name: "username", type: "text", title: "Username(email or phone i.e +1(123)456-7890", description: "August Username", required: true
-        input name: "password", type: "password", title: "Password", description: "August Password", required: true   
+        input name: "username", type: "text", title: "Username(email or phone i.e +44XXXXXXXXXX", description: "Yale Home Username", required: true
+        input name: "password", type: "password", title: "Password", description: "Yale Home Password", required: true   
         input 'login', 'button', title: 'Login', submitOnChange: true
     }
 }
@@ -253,7 +253,7 @@ def sessionRequest(loginMethod, userName, password)
     }
     catch (groovyx.net.http.HttpResponseException e) 
     {
-        LogError("connectToAugust failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
+        LogError("connectToYaleHome failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
         return false;
     }
 
@@ -382,7 +382,7 @@ def sendVerificationCodeResponse(loginMethod, userName, verifcationCode)
     }
     catch (groovyx.net.http.HttpResponseException e) 
     {
-        LogError("connectToAugust failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
+        LogError("connectToYaleHome failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
         return false;
     }
 
@@ -473,7 +473,7 @@ def discoverLocks()
     }
     catch (groovyx.net.http.HttpResponseException e) 
     {
-        LogError("connectToAugust failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
+        LogError("connectToYaleHome failed -- ${e.getLocalizedMessage()}: ${e.response.data}")
         return false;
     }
     
@@ -493,22 +493,22 @@ def discoverLocks()
             if (lockStatus.doorState != "init")
             {
                 addChildDevice(
-                    'thecloudtaylor',
-                    'August Lock with DoorSense',
+                    'tmleafs',
+                    'Yale Home Lock with DoorSense',
                     "${it.key}",
                     [
-                        name: "August Lock with DoorSense",
+                        name: "Yale Home Lock with DoorSense",
                         label: "${it.value['HouseName']} - ${it.value['LockName']}"
                     ])
             }
             else
             {
                 addChildDevice(
-                    'thecloudtaylor',
-                    'August Lock',
+                    'tmleafs',
+                    'Yale Home Lock',
                     "${it.key}",
                     [
-                        name: "August Lock",
+                        name: "Yale Home Lock",
                         label: "${it.value['HouseName']} - ${it.value['LockName']}"
                     ])   
             }
