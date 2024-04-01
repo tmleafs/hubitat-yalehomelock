@@ -16,10 +16,10 @@ if [[ -z "${version}" ]] || [[ -z "${codePath}" ]] || [[ -z "${relNotes}" ]]; th
   echo "Not all requied parmiters passed!"; echo $usage; exit 1 ;
 fi
 
-appPath="$codePath/augusthomeapp.groovy"
-lockDriverPath="$codePath/drivers/august_lock.groovy"
-lockDoorSenseDriverPath="$codePath/drivers/august_lock_doorsense.groovy"
-keyPadDriverPath="$codePath/drivers/august_keypad.groovy"
+appPath="$codePath/yalehomeapp.groovy"
+lockDriverPath="$codePath/drivers/yalehome_lock.groovy"
+lockDoorSenseDriverPath="$codePath/drivers/yalehome_lock_doorsense.groovy"
+keyPadDriverPath="$codePath/drivers/yalehome_keypad.groovy"
 
 echo "Version: $version"
 echo "CodePath: $codePath"
