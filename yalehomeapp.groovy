@@ -157,14 +157,14 @@ def LogError(logMessage)
 
 def installed()
 {
-    LogInfo("Installing August Home.");
+    LogInfo("Installing Yale Home.");
     state.twoFAneeded = false;
     
 }
 
 def initialize() 
 {
-    LogInfo("Initializing August Home.");
+    LogInfo("Initializing Yale Home.");
     unschedule()
     refreshToken()
     refreshLocks()
