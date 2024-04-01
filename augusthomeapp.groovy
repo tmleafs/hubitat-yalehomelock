@@ -1,5 +1,5 @@
 /*
-Hubitat App For August Home
+Hubitat App For Yale Home
 
 Copyright 2020 - Taylor Brown
 
@@ -12,7 +12,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 11-25-2020 :  Initial
 11-28-2020 :  0.0.1 Alpha 
-
+04-01-2024 :  1.0 Yale Home Rebrand
 Considerable inspiration and examples thanks to: https://github.com/snjoetw/py-august
 */
 
@@ -22,12 +22,10 @@ import groovy.json.JsonOutput
 import groovy.transform.Field
 
 
-@Field static String global_apiURL = "https://api-production.august.com"
-@Field static String global_HeaderApiKey = "79fd0eb6-381d-4adf-95a0-47721289d1d9"
-@Field static String global_HeaderUserAgent = "August/2019.12.16.4708 CFNetwork/1121.2.2 Darwin/19.3.0"
+@Field static String global_apiURL = "https://api.aaecosystem.com"
+@Field static String global_HeaderApiKey = "d9984f29-07a6-816e-e1c9-44ec9d1be431"
+@Field static String global_HeaderUserAgent = "August/Luna-22.17.0 (Android; SDK 31; gphone64_arm64)"
 @Field static String global_HeaderAcceptVersion = "0.0.1"
-
-
 
 definition(
         name: "August Home",
@@ -216,12 +214,13 @@ def sessionRequest(loginMethod, userName, password)
     def identifier = "${loginMethod}:${userName}"
 
     def uri = global_apiURL + '/session'
-
+// "x-kease-api-key":global_HeaderApiKey,
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent
     ]
     def body = [
@@ -283,11 +282,13 @@ def sendVerificationCodeRequest(loginMethod, userName)
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
+
     def body = [
         "value":userName
     ]
@@ -352,8 +353,9 @@ def sendVerificationCodeResponse(loginMethod, userName, verifcationCode)
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -397,8 +399,9 @@ def refreshToken()
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -444,8 +447,9 @@ def discoverLocks()
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -555,8 +559,9 @@ def getLock(deviceID)
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -646,8 +651,9 @@ def lockDoor(com.hubitat.app.DeviceWrapper device)
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -690,8 +696,9 @@ def unlockDoor(com.hubitat.app.DeviceWrapper device)
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -735,8 +742,9 @@ def getLockCodes(com.hubitat.app.DeviceWrapper lockDevice, com.hubitat.app.Devic
     def headers = [
         "Accept-Version":global_HeaderAcceptVersion,
         "x-august-api-key":global_HeaderApiKey,
-        "x-kease-api-key":global_HeaderApiKey,
         "Content-Type":"application/json",
+        "x-august-country":"US",
+        "x-august-branding":"yale",
         "User-Agent":global_HeaderUserAgent,
         "x-august-access-token":state.access_token
     ]
@@ -938,7 +946,7 @@ def deleteDevices()
     } 
 }
 
-def discoverDevices()
+def discoverDevices(
 {
     LogDebug("discoverDevices()");
 
