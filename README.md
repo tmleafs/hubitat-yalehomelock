@@ -1,2 +1,2 @@
-# hubitat-augustlock
-Hubitat Driver For August WiFI Lock
+# hubitat-YaleHomeLock
+Hubitat Driver For Yale Home WiFi Bridge Locks
