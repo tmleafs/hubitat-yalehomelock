@@ -18,7 +18,7 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
 metadata {
-    definition (name: "Yale Lock", namespace: "tmleafs", author: "Taylor Brown") {
+    definition (name: "Yale Home Lock", namespace: "tmleafs", author: "Taylor Brown") {
         capability "Lock"
         capability "Refresh"
         capability "Battery"
